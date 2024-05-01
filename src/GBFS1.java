@@ -1,0 +1,56 @@
+import java.util.*;
+
+public class GBFS1 {
+    public static List<String> findPath(String startWord, String endWord, Set<String> dictionary) {
+        Queue<Node> frontier = new PriorityQueue<>(Comparator.comparingInt(node -> heuristic(node, endWord)));
+        Set<String> explored = new HashSet<>();
+        frontier.add(new Node(startWord, null, 0));
+
+        while (!frontier.isEmpty()) {
+            Node current = frontier.poll();
+            if (current.getWord().equals(endWord)) {
+                return constructPath(current);
+            }
+            explored.add(current.getWord());
+            List<Node> successors = current.generateSuccessors(dictionary);
+            for (Node successor : successors) {
+                if (!explored.contains(successor.getWord())) {
+                    frontier.add(successor);
+                }
+            }
+        }
+        return null;
+    }
+
+    private static List<String> constructPath(Node node) {
+        List<String> path = new ArrayList<>();
+        while (node != null) {
+            path.add(0, node.getWord());
+            node = node.getParent();
+        }
+        return path;
+    }
+
+    private static int heuristic(Node node, String endWord) {
+        int mismatchCount = 0;
+        for (int i = 0; i < node.getWord().length(); i++) {
+            if (node.getWord().charAt(i) != endWord.charAt(i)) {
+                mismatchCount++;
+            }
+        }
+        return mismatchCount;
+    }
+
+    public static void main(String[] args) {
+        String startWord = "hit";
+        String endWord = "cog";
+        Set<String> dictionary = Loader.loadDictionary("dict.txt");
+
+        List<String> path = findPath(startWord, endWord, dictionary);
+        if (path != null) {
+            System.out.println("Path found: " + path);
+        } else {
+            System.out.println("No path found.");
+        }
+    }
+}
