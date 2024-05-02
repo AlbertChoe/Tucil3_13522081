@@ -1,25 +1,27 @@
 import java.util.*;
 
 public class UCS1 {
-    public static List<String> findPath(String startWord, String endWord, Set<String> dictionary) {
-        Queue<Node> frontier = new PriorityQueue<>(Comparator.comparingInt(Node::getCost));
-        Set<String> explored = new HashSet<>();
-        frontier.add(new Node(startWord, null, 0));
+    public static SearchResult findPath(String startWord, String endWord, Set<String> dictionary) {
+        Queue<Node> queue = new PriorityQueue<>(Comparator.comparingInt(Node::getCost));
+        Set<String> visited = new HashSet<>();
+        int visitedCount = 0;
+        queue.add(new Node(startWord, null, 0));
 
-        while (!frontier.isEmpty()) {
-            Node current = frontier.poll();
-            if (current.getWord().equals(endWord)) {
-                return constructPath(current);
-            }
-            explored.add(current.getWord());
-            List<Node> successors = current.generateSuccessors(dictionary);
-            for (Node successor : successors) {
-                if (!explored.contains(successor.getWord())) {
-                    frontier.add(successor);
+        while (!queue.isEmpty()) {
+            Node current = queue.poll();
+            if (visited.add(current.getWord())) {
+                visitedCount++;
+                if (current.getWord().equals(endWord)) {
+                    return new SearchResult(constructPath(current), visitedCount);
+                }
+                for (Node successor : current.generateSuccessors(dictionary)) {
+                    if (!visited.contains(successor.getWord())) {
+                        queue.add(successor);
+                    }
                 }
             }
         }
-        return null;
+        return new SearchResult(null, visitedCount); // No path found
     }
 
     private static List<String> constructPath(Node node) {
@@ -31,16 +33,4 @@ public class UCS1 {
         return path;
     }
 
-    public static void main(String[] args) {
-        String startWord = "hit";
-        String endWord = "cog";
-        Set<String> dictionary = Loader.loadDictionary("dict.txt");
-
-        List<String> path = findPath(startWord, endWord, dictionary);
-        if (path != null) {
-            System.out.println("Path found: " + path);
-        } else {
-            System.out.println("No path found.");
-        }
-    }
 }
