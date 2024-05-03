@@ -1,8 +1,10 @@
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -14,10 +16,16 @@ public class Gui extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Word Ladder Solver");
 
-        GridPane grid = new GridPane();
-        grid.setVgap(20);
-        grid.setHgap(20);
-        grid.setPadding(new Insets(10, 10, 10, 10));
+        // Main layout container
+        VBox mainLayout = new VBox(20);
+        mainLayout.setAlignment(Pos.TOP_CENTER);
+        mainLayout.setPadding(new Insets(20));
+
+        // Grid for user inputs
+        GridPane inputGrid = new GridPane();
+        inputGrid.setAlignment(Pos.CENTER);
+        inputGrid.setVgap(10);
+        inputGrid.setHgap(10);
 
         TextField startWordField = new TextField();
         TextField endWordField = new TextField();
@@ -25,29 +33,39 @@ public class Gui extends Application {
         algorithmChoice.getItems().addAll("UCS", "GBFS", "AStar");
         algorithmChoice.setValue("UCS");
 
+        inputGrid.add(new Label("Start Word:"), 0, 0);
+        inputGrid.add(startWordField, 1, 0);
+        inputGrid.add(new Label("End Word:"), 0, 1);
+        inputGrid.add(endWordField, 1, 1);
+        inputGrid.add(new Label("Algorithm:"), 0, 2);
+        inputGrid.add(algorithmChoice, 1, 2);
+
         Button submitButton = new Button("Find Path");
+        HBox buttonBox = new HBox(submitButton);
+        buttonBox.setAlignment(Pos.CENTER);
+
+        // Labels for metrics
+        Label timeLabel = new Label("Time taken: -");
+        Label visitedLabel = new Label("Nodes visited: -");
+        HBox metricsBox = new HBox(20, timeLabel, visitedLabel);
+        metricsBox.setAlignment(Pos.CENTER);
+
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setFitToWidth(true);
         VBox resultsBox = new VBox(10);
         scrollPane.setContent(resultsBox);
 
-        Label timeLabel = new Label("Time taken: -");
-        Label visitedLabel = new Label("Nodes visited: -");
-
-        grid.add(new Label("Start Word:"), 0, 0);
-        grid.add(startWordField, 1, 0);
-        grid.add(new Label("End Word:"), 0, 1);
-        grid.add(endWordField, 1, 1);
-        grid.add(new Label("Algorithm:"), 0, 2);
-        grid.add(algorithmChoice, 1, 2);
-        grid.add(submitButton, 1, 3);
-        grid.add(timeLabel, 0, 4);
-        grid.add(visitedLabel, 1, 4);
-        grid.add(scrollPane, 0, 5, 2, 1);
+        // Add all parts to the main layout
+        mainLayout.getChildren().addAll(inputGrid, buttonBox, metricsBox, scrollPane);
 
         submitButton.setOnAction(e -> {
             String startWord = startWordField.getText().trim().toLowerCase();
             String endWord = endWordField.getText().trim().toLowerCase();
+
+            resultsBox.getChildren().clear();
+            timeLabel.setText("Time taken: -");
+            visitedLabel.setText("Nodes visited: -");
+
             Set<String> dictionary = Loader.loadDictionary("src/dict.txt");
             if (dictionary.isEmpty() || !dictionary.contains(startWord) || !dictionary.contains(endWord)
                     || startWord.length() != endWord.length()) {
@@ -72,7 +90,7 @@ public class Gui extends Application {
             }
         });
 
-        Scene scene = new Scene(grid, 600, 500);
+        Scene scene = new Scene(mainLayout, 600, 600);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
