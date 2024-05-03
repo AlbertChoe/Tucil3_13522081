@@ -2,23 +2,27 @@ import java.util.*;
 
 public class GBFS1 {
     public static SearchResult findPath(String startWord, String endWord, Set<String> dictionary) {
+        if (startWord.equals(endWord)) {
+            return new SearchResult(null, 0);
+        }
         Queue<Node> queue = new PriorityQueue<>(Comparator.comparingInt(node -> heuristic(node, endWord)));
         Set<String> visited = new HashSet<>();
         int visitedCount = 0;
         queue.add(new Node(startWord, null, 0));
-
+        visited.add(startWord);
         while (!queue.isEmpty()) {
             Node current = queue.poll();
             if (current.getWord().equals(endWord)) {
                 return new SearchResult(constructPath(current), visitedCount);
             }
-            if (visited.add(current.getWord())) {
-                visitedCount++;
-                List<Node> successors = current.generateSuccessors(dictionary);
-                for (Node successor : successors) {
-                    if (!visited.contains(successor.getWord())) {
-                        queue.add(successor);
-                    }
+
+            visitedCount++;
+            List<Node> successors = current.generateSuccessors(dictionary);
+            for (Node successor : successors) {
+                if (!visited.contains(successor.getWord())) {
+                    visited.add(successor.getWord());
+                    queue.add(successor);
+
                 }
             }
         }

@@ -2,6 +2,9 @@ import java.util.*;
 
 public class UCS1 {
     public static SearchResult findPath(String startWord, String endWord, Set<String> dictionary) {
+        if (startWord.equals(endWord)) {
+            return new SearchResult(null, 0);
+        }
         Queue<Node> queue = new PriorityQueue<>(Comparator.comparingInt(Node::getCost));
         Set<String> visited = new HashSet<>();
         int visitedCount = 0;
