@@ -173,14 +173,19 @@ git clone https://github.com/AlbertChoe/Tucil3_13522081.git
 cd ./Tucil3_13522081/src
 ```
 
-3. Run the following command:
+3. Checkout to branch CLI by following the command below:
+```shell
+git checkout CLI
+```
+
+4. Run the following command:
 
 ```shell
 javac Main.java
 java Main
 ```
 
-4. After successfully launching the application, users can choose the search algorithm, either using UCS, GBFS or AStar. Once the user selects the search algorithm, they need to enter the start word and the end word for the word ladder game. The program will display the result, along with execution time, and the number of nodes visited.
+5. After successfully launching the application, users can choose the search algorithm, either using UCS, GBFS or AStar. Once the user selects the search algorithm, they need to enter the start word and the end word for the word ladder game. The program will display the result, along with execution time, and the number of nodes visited.
 
 ## Creator
 
