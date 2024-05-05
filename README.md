@@ -28,6 +28,9 @@ Here is the purpose of making this project :
 
 ## Abstraction
 
+The Word Ladder Solver is a Java application that employs three distinct algorithms Uniform Cost Search (UCS), Greedy Best First Search (GBFS), and A* (AStar) to find the shortest transformation sequence between two words, where each step involves changing a single letter to form another valid dictionary word. The project features a graphical user interface (GUI) developed using JavaFX, providing an intuitive platform for users to input start and end words, select an algorithm, and instantly view the results including the path taken, the number of nodes visited, and the execution time. This GUI enhances user interaction, making the solver accessible and easy to use while demonstrating the effectiveness of different algorithmic approaches in solving the Word Ladder problem.
+
+
 ## Problem Solving Steps with UCS Algorithm
 
 1. Initialize the queue: Start by initializing a priority queue. Add the starting word with a cumulative cost of zero.
