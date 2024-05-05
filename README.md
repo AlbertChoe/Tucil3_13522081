@@ -139,12 +139,13 @@ git clone https://github.com/AlbertChoe/Tucil3_13522081.git
 2. Navigate to the src directory of the program by running the following command in the terminal:
 
 ```shell
-cd ./Tucil3_13522081/bin
+cd ./Tucil3_13522081/src
 ```
 
 3. Run the following command:
 
 ```shell
+javac Main.java
 java Main
 ```
 
