@@ -113,6 +113,7 @@ java --module-path <path to your javaFX sdk path for example C:\Java\javafx-sdk-
 ```
 
 In Linux:
+after you follow this 2 steps below if the gui is not showing then try this `export DISPLAY=:0.0` after that try again
 
 ```shell
 javac --module-path <path to your javaFX sdk path for example /home/albert/javafx-sdk-22.0.1>/lib --add-modules javafx.controls,javafx.fxml,javafx.graphics -d ./bin src/*.java
@@ -122,9 +123,39 @@ javac --module-path <path to your javaFX sdk path for example /home/albert/javaf
 java --module-path <path to your javaFX sdk path for example /home/albert/javafx-sdk-22.0.1>/lib --add-modules javafx.controls,javafx.fxml,javafx.graphics -cp ./bin Main
 ```
 
-when running java .. if you the gui is not showing then try this `export DISPLAY=:0.0`
-
 4. After successfully launching the application, users can choose the search algorithm, either using UCS, GBFS or AStar. Once the user selects the search algorithm, they need to enter the start word and the end word for the word ladder game. The program will display the result, along with execution time, and the number of nodes visited.
+
+## If the gui is still not showing then try
+
+1. follow this steps
+
+```shell
+click ctrl + shift + p
+
+```
+
+2. add this to you settings.json
+
+```shell
+"java.project.referencedLibraries": [
+		"lib/**/*.jar",
+		" < Your path when downloading the javaFX SDK >/lib/*"
+	]
+```
+
+dont forget to change the path to your own JavaFX downloaded path.
+
+3. Open launch.json file and change the path to your JavaFX SDK path you downloaded:
+
+![launch.json](image/image.png)
+
+```shell
+change the  < Your path when donwloading the javaFX SDK > into your own path where you donwloaded the JavaFX
+```
+
+4.  then try using F5 to run the Main.java
+
+5.  After successfully launching the application, users can choose the search algorithm, either using UCS, GBFS or AStar. Once the user selects the search algorithm, they need to enter the start word and the end word for the word ladder game. The program will display the result, along with execution time, and the number of nodes visited.
 
 ## Installation With CLI
 
