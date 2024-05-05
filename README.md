@@ -1,5 +1,8 @@
 <h1 align="center">Tugas Kecil 3 IF2211 Strategy Algorithm</h1>
+<h1 align="center">Sem II 2023/2024</h1>
 <h3 align="center">Wiki Ladder Solver</p>
+
+![GitHub last commit](https://img.shields.io/github/last-commit/AlbertChoe/Tucil3_13522081)
 
 ## Table of Contents
 
@@ -8,6 +11,7 @@
 - [Built With](#built-with)
 - [Installation With GUI](#installation-with-GUI)
 - [Installation With CLI](#installation-with-CLI)
+- [Creator](#creator)
 - [Links](#links)
 
 ## Overview
@@ -145,6 +149,12 @@ java Main
 ```
 
 4. After successfully launching the application, users can choose the search algorithm, either using UCS, GBFS or AStar. Once the user selects the search algorithm, they need to enter the start word and the end word for the word ladder game. The program will display the result, along with execution time, and the number of nodes visited.
+
+## Creator
+
+| NIM      | Nama   | Kelas |
+| -------- | ------ | ----- |
+| 13522081 | Albert | K-01  |
 
 ## Links
 
