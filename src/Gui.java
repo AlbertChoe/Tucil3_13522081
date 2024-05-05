@@ -66,7 +66,7 @@ public class Gui extends Application {
             timeLabel.setText("Time taken: -");
             visitedLabel.setText("Nodes visited: -");
 
-            Set<String> dictionary = Loader.loadDictionary("src/dict.txt");
+            Set<String> dictionary = Loader.loadDictionary("./bin/dict.txt");
             if (dictionary.isEmpty() || !dictionary.contains(startWord) || !dictionary.contains(endWord)
                     || startWord.length() != endWord.length()) {
                 resultsBox.getChildren().setAll(new Text("Invalid input or dictionary issues."));

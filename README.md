@@ -28,8 +28,7 @@ Here is the purpose of making this project :
 
 ## Abstraction
 
-The Word Ladder Solver is a Java application that employs three distinct algorithms Uniform Cost Search (UCS), Greedy Best First Search (GBFS), and A* (AStar) to find the shortest transformation sequence between two words, where each step involves changing a single letter to form another valid dictionary word. The project features a graphical user interface (GUI) developed using JavaFX, providing an intuitive platform for users to input start and end words, select an algorithm, and instantly view the results including the path taken, the number of nodes visited, and the execution time. This GUI enhances user interaction, making the solver accessible and easy to use while demonstrating the effectiveness of different algorithmic approaches in solving the Word Ladder problem.
-
+The Word Ladder Solver is a Java application that employs three distinct algorithms Uniform Cost Search (UCS), Greedy Best First Search (GBFS), and A\* (AStar) to find the shortest transformation sequence between two words, where each step involves changing a single letter to form another valid dictionary word. The project features a graphical user interface (GUI) developed using JavaFX, providing an intuitive platform for users to input start and end words, select an algorithm, and instantly view the results including the path taken, the number of nodes visited, and the execution time. This GUI enhances user interaction, making the solver accessible and easy to use while demonstrating the effectiveness of different algorithmic approaches in solving the Word Ladder problem.
 
 ## Problem Solving Steps with UCS Algorithm
 
@@ -76,9 +75,10 @@ The Word Ladder Solver is a Java application that employs three distinct algorit
 
 To run this project, you will need to perform several installations, including:
 
-- `Java 20` : This application requires Java 20, which is the main programming language used to create this project.
-- `Java FX` : This is a software platform used to create and deliver desktop applications, as well as rich internet applications that can run across a wide variety of devices. JavaFX is crucial for the GUI components of this project.
+- `Java 17` : This application requires minimum Java 17, which is the main programming language used to create this project.
+- `Java FX` : This is a software platform used to create and deliver desktop applications, as well as rich internet applications that can run across a wide variety of devices. JavaFX is crucial for the GUI components of this project. Download according to your operating system.
 - `Integrated Development Environment (IDE)` : An IDE that supports Java and JavaFX is recommended for ease of development(This project is developed using VSCode IDE).
+- For Linux: The latest version of Java must be installed on your machine to compile and run the code. Ensure that the java version installed is non-headless or you can download it using `sudo apt install openjdk-17-jdk`
 
 ## Installation With GUI
 
@@ -96,40 +96,31 @@ git clone https://github.com/AlbertChoe/Tucil3_13522081.git
 cd ./Tucil3_13522081
 ```
 
-3. Open the project in IDE(Preferably VSCode):
+3. run the following commands:
+
+In Windows:
 
 ```shell
-code .
+javac --module-path <path to your javaFX sdk path for example C:\Java\javafx-sdk-22.0.1>\lib --add-modules javafx.controls,javafx.fxml,javafx.graphics  -d bin src\*.java
 ```
-
-4. If you havent set up your IDE settings.json then follow this steps:
 
 ```shell
-click ctrl + shift + p
-
+java --module-path <path to your javaFX sdk path for example C:\Java\javafx-sdk-22.0.1>\lib --add-modules javafx.controls,javafx.fxml,javafx.graphics -cp bin Main
 ```
 
-then add this to you settings.json
+In Linux:
 
 ```shell
-"java.project.referencedLibraries": [
-		"lib/**/*.jar",
-		" < Your path when downloading the javaFX SDK >/lib/*"
-	]
+javac --module-path <path to your javaFX sdk path for example /home/albert/javafx-sdk-22.0.1>/lib --add-modules javafx.controls,javafx.fxml,javafx.graphics -d ./bin src/*.java
 ```
-
-dont forget to change the path to your own JavaFX downloaded path.
-
-5. Open launch.json file and change the path to your JavaFX SDK path you donwloaded:
-
-![launch.json](image/image.png)
 
 ```shell
-change the  < Your path when donwloading the javaFX SDK > into your own path where you donwloaded the JavaFX
+java --module-path <path to your javaFX sdk path for example /home/albert/javafx-sdk-22.0.1>/lib --add-modules javafx.controls,javafx.fxml,javafx.graphics -cp ./bin Main
 ```
 
-6. If done then you can directly click F5 to run the project.
-7. After successfully launching the application, users can choose the search algorithm, either using UCS, GBFS or AStar. Once the user selects the search algorithm, they need to enter the start word and the end word for the word ladder game. The program will display the result, along with execution time, and the number of nodes visited.
+when running java .. if you the gui is not showing then try this `export DISPLAY=:0.0`
+
+4. After successfully launching the application, users can choose the search algorithm, either using UCS, GBFS or AStar. Once the user selects the search algorithm, they need to enter the start word and the end word for the word ladder game. The program will display the result, along with execution time, and the number of nodes visited.
 
 ## Installation With CLI
 
